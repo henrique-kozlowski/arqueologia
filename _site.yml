@@ -1,0 +1,25 @@
+name: "Henrique Kozlowski"
+navbar:
+  title: "Henrique Kozlowski"
+  right:
+    - text: "Início"
+      href: index.html
+    - text: "Dados"
+      menu:
+        - text: "Área de Pesquisa"
+          href: localizacao.html
+    - text: "Sobre"
+      href: about.html
+    - icon: fab fa-twitter fa-lg
+      href: https://twitter.com/riquesk
+    - icon: fa-university fa-lg
+      href: https://www.researchgate.net/profile/Henrique-Kozlowski-2
+    - icon: fa-envelope fa-lg
+      href: mailto:<henriquekozlowski@usp.br>
+    - icon: fab fa-github fa-lg
+      href: http://github.com/henrique-kozlowski/
+
+output:
+  html_document:
+    theme: cosmo
+output_dir: "docs"
