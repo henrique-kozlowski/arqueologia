@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Área de Pesquisa"
 output: 
   html_document:
     toc: true
@@ -13,7 +13,10 @@ library(tidyverse)
 library(tidylog)
 library(sf)
 library(RColorBrewer)
-sitios <- st_read("shapefiles/sitiosv5.shp")
+library(DT)
+sitios_shape <- st_read("shapefiles/sitiosv5.shp")
+sitios_tabela <- read.csv2("tabelas/sitios.csv", encoding = "UTF-8")
+sitios_tabela <- sitios_tabela %>% rename(nome = X.U.FEFF.sitio)
 ```
 
 
@@ -27,7 +30,7 @@ Nesta seção apresentamos os mapas e tabelas da área de pesquisa de maneira in
 O mapa abaixo apresenta os diferentes sítios arqueológicos mapeados na área de pesquisa. É só clicar em um ponto para se ter mais informações sobre o sítio.
 
 ```{r echo=FALSE}
-sitios %>% mapview(zcol = "Tipo_2",
+sitios_shape %>% mapview(zcol = "Tipo_2",
                    label = "Sítio",
                    map.types = c("Esri.WorldImagery", "Esri.WorldShadedRelief"),
                    col.regions = brewer.pal(5,"Set3"),
@@ -37,5 +40,15 @@ sitios %>% mapview(zcol = "Tipo_2",
 ***
 
 ## Tabela de Sítios
+
+A tabela abaixo apresenta as informações de todos os sítios arqueológicos conhecidos na área, incluindo aqueles que não possuem coordenadas UTM. Essa tabela corresponde ao Anexo 1. Todas as coordenadas UTM estão no sistema SIRGAS 2000 Datum 22S.
+
+```{r echo=FALSE}
+sitios_tabela %>%
+  datatable(colnames = c("Sítio", "Categoria", "Município", "X", "Y", "Código CNSA", "Referência"),
+            caption = "Tabela de Sítios Arqueológicos",
+            style = "bootstrap")
+```
+
 
 ***
