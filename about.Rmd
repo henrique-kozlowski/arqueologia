@@ -3,7 +3,26 @@ title: "Sobre"
 output: html_document
 ---
 
+<center>
+![](images/perfil.png){height=30% width=30%}
+</center>
+
+# **Henrique de Sena Kozlowski**
+Arqueólogo, doutorando pelo Museu de Arqueologia e Etnologia da Universidade de São Paulo e bolsista CNPq. Pesquiso sambaquis do litoral sul catarinense através da aplicação de técnicas de modelagem espacial em GIS e Agent-Based Models (ABM). Este site serve como apoio digital para a minha tese de doutorado "xxxxx". Se você tiver qualquer dúvida, entre em contato comigo através de uma das minhas redes.
+
 ***
 
-# **Sobre**
-Teste teste teste
+<center>
+
+[![Lattes](images/lattes.png "Lattes")](http://lattes.cnpq.br/3727028320931607)
+[![ORCID](images/orcid.png "Orcid")](https://orcid.org/0000-0003-0853-072X)
+[![email](images/mail.png "email")](mailto:henriquekozlowski@usp.br)
+[![Twitter](images/twitter.png "Twitter")](https://twitter.com/riquesk)
+[![GitHub](images/github.png "GitHub")](https://github.com/henrique-kozlowski)
+
+</center>
+
+
+
+
+
