@@ -28,7 +28,7 @@ Nesta seção apresentamos os mapas e tabelas da área de pesquisa de maneira in
 
 O mapa abaixo apresenta os diferentes sítios arqueológicos mapeados na área de pesquisa. É só clicar em um ponto para se ter mais informações sobre o sítio.
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 sitios_shape %>% mapview(zcol = "Tipo_2",
                    label = "Sítio",
                    map.types = c("Esri.WorldImagery", "Esri.WorldShadedRelief"),
