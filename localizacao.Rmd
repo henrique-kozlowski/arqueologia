@@ -15,8 +15,8 @@ library(sf)
 library(RColorBrewer)
 library(DT)
 sitios_shape <- st_read("shapefiles/sitiosv5.shp")
-sitios_tabela <- read.csv2("tabelas/sitios.csv", encoding = "UTF-8")
-sitios_tabela <- sitios_tabela %>% rename(nome = X.U.FEFF.sitio)
+sitios_tabela <- read.csv2("tabelas/sitios_total.csv", encoding = "UTF-8")
+sitios_tabela <- sitios_tabela %>% rename(Sítio = X.U.FEFF.Sítio)
 ```
 
 
@@ -45,7 +45,7 @@ A tabela abaixo apresenta as informações de todos os sítios arqueológicos co
 
 ```{r echo=FALSE}
 sitios_tabela %>%
-  datatable(colnames = c("Sítio", "Categoria", "Município", "X", "Y", "Código CNSA", "Referência"),
+  datatable(colnames = c("Sítio", "Tipo", "Município", "X", "Y", "Código CNSA", "Referência"),
             caption = "Tabela de Sítios Arqueológicos",
             style = "bootstrap")
 ```
