@@ -10,6 +10,8 @@ navbar:
           href: localizacao.html
         - text: "Datações"
           href: datacao.html
+        - text: "Modelagem"
+          href: modelagem.html         
     - text: "Sobre"
       href: about.html
     - icon: fab fa-twitter fa-lg

@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Modelagem</title>
+
+<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Henrique Kozlowski</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">Início</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dados
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="localizacao.html">Área de Pesquisa</a>
+    </li>
+    <li>
+      <a href="datacao.html">Datações</a>
+    </li>
+    <li>
+      <a href="modelagem.html">Modelagem</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">Sobre</a>
+</li>
+<li>
+  <a href="https://twitter.com/riquesk">
+    <span class="fab fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.researchgate.net/profile/Henrique-Kozlowski-2">
+    <span class="fa fa-university fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="mailto:&lt;henriquekozlowski@usp.br&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/henrique-kozlowski/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Modelagem</h1>
+
+</div>
+
+
+<hr />
+<div id="agent-based-model" class="section level1">
+<h1><strong>Agent-Based Model</strong></h1>
+<p>Nesta seção estão disponibilizadas as informações relativas ao modelo
+baseado em agentes (ABM) produzido na tese, como o código-fonte e o
+relatório ODD para reprodução do modelo. O modelo foi construído no
+software NetLogo 6.2, que pode ser obtido de forma gratuita <a
+href="https://ccl.northwestern.edu/netlogo/">aqui</a>.</p>
+<p>Os arquivos para execução do modelo também estão disponíveis para
+download neste <a
+href="https://github.com/henrique-kozlowski/arqueologia">link</a>, na
+pasta “modelo”.</p>
+<hr />
+<div id="relatório-odd" class="section level2">
+<h2>Relatório ODD</h2>
+<p><strong>1.      Visão Geral</strong></p>
+<p><strong>1.1.   Propósito e padrões</strong></p>
+<p>O propósito deste modelo é simular a ocupação do complexo lagunar do
+litoral sul catarinense por comunidades sambaquieiras com o objetivo de
+replicar o padrão de ocupação destas comunidades em grupos aglomerados
+de maneira circum-lagunar. Este modelo utiliza simplificações para
+simular os processos de criação de novas áreas de ocupação e também para
+simular áreas favoráveis para a ocupação humana. Não é um objetivo
+definir áreas de maior probabilidade de ocorrência de sítios
+arqueológicos.</p>
+<p><strong>1.2.   Elementos, variáveis e escalas</strong></p>
+<p><u><em>Agentes</em>/<em>Indivíduos</em></u> Os agentes utilizados no
+modelo correspondem à diferentes comunidades sambaquieiras. Os agentes
+são representados por um triângulo colorido e são chamados pelo programa
+de <em>shellmounds</em>. Não propomos que as populações sambaquieiras
+estejam morando sobre os sambaquis, mas devido à nossa escala espacial
+de análise, a comunidade inteira é representada por um sambaqui. Os
+sambaquis possuem três variáveis próprias: população
+(<em>population)</em>, produção (<em>production</em>) e idade
+(<em>age</em>). A população é inicializada com um valor aleatório entre
+25 a 50 indivíduos e varia de acordo com a ação de outros procedimentos
+ao longo da simulação. A produção é baseada nas variáveis de população e
+na interação com o ambiente. A idade é auto-explicativa e aumenta
+conforme se passam os ciclos da simulação.</p>
+<p><u><em>Ambiente</em></u> O ambiente simulado é a região norte do
+complexo lagunar de Santa Catarina e engloba as lagoas de Imaruí, Mirim,
+Ibiraquera e Garopaba. Cada célula mapeada possui duas variáveis:
+aptidão (<em>suitability</em>) e recursos (<em>resources</em>). A
+aptidão é inicializada a partir das cores dos pixels de um arquivo
+matricial em formato de imagem PNG produzido previamente em ambiente
+SIG. Os recursos são inicializados com um valor aleatório de 0 a 25,
+multiplicado pela aptidão da célula.</p>
+<p><u><em>Escalas</em></u> A simulação roda em uma escala temporal em
+que um ciclo (<em>tick</em>) equivale a ações que se desenvolvem ao
+longo de um ano. A escala espacial é um mundo de 246 x 331 células
+(<em>patches</em>), onde cada célula equivale à uma área de 0,0225 km².
+A duração da simulação é de 2500 ciclos (<em>ticks</em>).</p>
+<p><strong>1.3.   Visão geral do processo e itinerário da
+simulação</strong></p>
+<p>Ao início de um ciclo os agentes calculam a sua produção
+(<em>CALCULATE-PRODUCTION</em>), o cálculo de produção é baseado na
+produção dos <em>patches</em> sem nenhum outro agente dentro de sua área
+de ocupação (<em>OCCUPATION-RADIUS</em>) somada à produção da célula em
+que o agente se encontra. Em seguida, o agente calcula seu consumo
+(<em>CONSUMPTION</em>) multiplicando a sua variável população
+(<em>POPULATION</em>) com a variável global da taxa de consumo
+(<em>CONSUMPTION-RATE</em>). Se a relação entre produção e consumo for
+maior que 1 os agentes executam o procedimento de crescimento
+populacional (<em>POP-GROWTH</em>), definido como a multiplicação da
+taxa de crescimento com a variável de população, somada à população
+atual. Os agentes que tiveram uma relação positiva (maior que 1) na
+produção e consumo executam um novo procedimento: divisão
+(<em>SPLIT</em>). Essa divisão possui uma chance aleatória de acontecer
+baseada na variável global de taxa de divisão (<em>SPLIT-RATE</em>) e na
+disponibilidade de células ainda não ocupadas dentro do raio de
+ocupação. Caso ocorra a divisão da comunidade, há a criação de um novo
+agente linkado ao agente “pai” em uma célula com a maior aptidão
+(<em>SUITABILITY</em>) disponível. A população deste novo agente é
+equivalente a 1/3 da população do agente pai, o agente pai recalcula sua
+população para o novo valor. Os agentes que não tiveram um saldo
+positivo (menor que 1) na relação entre consumo e produção possuem a
+opção de cooperar (<em>COOPERATE</em>) com agentes conectados em sua
+vizinhança. A chance de cooperação é calculada aleatoriamente a partir
+da variável global da taxa de cooperação (<em>COOPERATION-RATE</em>).
+Caso os agentes resolvam cooperar a produção do agente equivale a sua
+produção atual deficitária somada a metade do excedente de produção
+(produção – consumo) do agente a qual está conectado. Caso os agentes
+não cooperam, há uma perda de população equivalente ao quanto faltou de
+recursos para aquele agente. Após esses procedimentos todos os agentes
+executam o procedimento de morte (<em>DEATH</em>) onde multiplica-se a
+população atual pela taxa de mortalidade (<em>DEATH-RATE</em>) e o valor
+resultante é subtraído da população atual. Por fim, os agentes calculam
+a sua idade somando 1 a cada ciclo. Os agentes que tiverem a população
+igual ou menor ao valor mínimo estipulado (<em>MIN-POPULATION</em>) são
+removidos da simulação.</p>
+<p><strong>2.      Conceitos de design</strong></p>
+<p><u><em>Princípios Gerais</em></u> Neste modelo os agentes estabelecem
+relações de cooperação entre si baseado na proposta de uma sociedade
+sambaquieira heterárquica integrada e interconectada (DeBlasis <em>et
+al.</em> 2021), baseada na gestão compartilhada de recursos de
+subsistência (Toso <em>et al.</em> 2021). O ambiente de modelagem e a
+aptidão das áreas é gerado a partir de um modelo preditivo indutivo dos
+sambaquis da região, as áreas de maior aptidão são aquelas em que há
+maior probabilidade de ocorrência de sambaquis. Essa é uma solução para
+lidar com a ausência de dados paleoambientais detalhados para recriar
+uma paisagem pretérita. Os recursos também não se referem a nenhum
+objeto específico, são apenas uma forma de se criar uma paisagem
+variada. O objetivo da simulação é observar o padrão emergente de
+ocupação circum-lagunar observado empiricamente para os sambaquis do
+litoral sul catarinense.</p>
+<p><u><em>Adaptação</em></u> A simulação mostra uma concentração de
+sítios com população pequena, que acabam sendo mais bem sucedidos do que
+sítios grandes. Os sítios novos ocupam áreas ao redor das lagoas e com o
+crescimento populacional ocupam áreas de menor aptidão.</p>
+<p><u><em>Sensoriamento</em></u> Os agentes ao início da simulação têm
+conhecimento apenas das áreas em seu entorno de ocupação. No entanto,
+com o aumento das comunidades, isto é, através da criação de novos
+agentes na simulação novas áreas são exploradas e a quantidade de
+recursos captados aumenta. Em algumas áreas do mundo ocorrem explosões
+populacionais devido à uma maior disponibilidade de recursos.</p>
+<p><u><em>Interação</em></u> Os agentes interagem apenas com os seus
+agentes “filhos” criados a partir dos procedimentos de divisão. É
+interessante expandir o modelo para criar uma rede de interação com
+outros sítios em diferentes porções do mundo simulado.</p>
+<p><u><em>Estocasticidade</em></u> Alguns elementos estocásticos estão
+presentes no modelo para garantir diversidade nas simulações. Os
+exemplos de estocasticidade ocorrem com as decisões de divisão e
+cooperação, que podem ser alterados no painel inicial da simulação.</p>
+<p><u><em>Observação</em></u> São coletadas três informações, em
+gráfico, neste modelo. Essas observações são um histograma da
+distribuição da população por sítio, um gráfico do total de sítios
+presentes na simulação e um gráfico quantificando as áreas de ocupação
+dos sítios.</p>
+<p><strong>3.      Detalhes</strong></p>
+<p><strong>3.1.   Inicialização</strong></p>
+<p>O modelo inicializa com a importação dos dados do arquivo de imagem
+do mundo simulado. Essa inicialização utiliza as cores da imagem para
+também definir a aptidão de cada célula. Esse método de importação de
+imagem é baseado no modelo produzido por Fajardo <em>et al.</em> (2020),
+onde definimos cinco categorias distintas de aptidão baseadas na imagem.
+Os valores presentes na tela de início para a população inicial
+(<em>initial-population</em>), taxa de consumo
+(<em>consumption-rate</em>), taxa de crescimento populacional
+(<em>pop-growth-rate</em>), taxa de cooperação
+(<em>cooperation-rate</em>), taxa de divisão (<em>split-rate</em>), taxa
+de mortalidade (<em>death-rate</em>) e raio de ocupação
+(<em>occupation-radius</em>) podem ser alterados conforme desejado para
+criar diferentes cenários. Os valores pré-determinados são resultantes
+de testes onde foi possível atingir um cenário de ocupação mais próximo
+ao padrão empírico dos sítios arqueológicos da região. A simulação
+também possibilita a criação de uma nova <em>seed</em> para cada
+simulação ou a manutenção desta <em>seed</em> para testar diferentes
+parâmetros com uma certa regularidade. Esta <em>seed</em> está
+relacionada aos valores utilizados pelo computador para gerar
+aleatoriedade.</p>
+<p><strong>3.2.   Inputs</strong></p>
+<p>O modelo necessita de apenas um <em>input</em> externo: o arquivo de
+imagem com o mapa da área. Esse mapa foi criado através da exportação de
+um arquivo matricial produzido em ambiente SIG. O arquivo imagem deve
+estar na mesma pasta do arquivo do modelo, com o nome e formato do
+arquivo identificado na caixa de texto “world”.</p>
+<p><strong>3.3.   Observações e referências</strong></p>
+<p>Este modelo se propõe a replicar o padrão de distribuição dos
+sambaquis do litoral sul catarinense. Os valores utilizados para as
+diferentes taxas e probabilidades são genéricos e obtidos através da
+testagem para replicar o cenário mais parecido com o real. Há diversas
+possibilidades de expansão do modelo, principalmente com um refinamento
+dos procedimentos das estratégias de cooperação entre agentes e também
+do mundo simulado. É interessante testar variações nas taxas de
+cooperação, raio de ocupação e taxas de divisão para observar diferenças
+nos padrões de ocupação e duração da simulação. Esse modelo baseia seus
+procedimentos de inicialização do mundo, criação de agentes e cooperação
+com base no “Gregarious Behaviour Model” (Fajardo <em>et al.</em>
+2020).</p>
+<hr />
+</div>
+<div id="código-fonte" class="section level2">
+<h2>Código Fonte</h2>
+<p>Abaixo está disponibilizado o código completo do modelo:</p>
+<pre class="netlogo"><code>globals [
+  land-patches
+  red-patch?
+  green-patch?
+  yellow-patch?
+  orange-patch?
+]
+
+patches-own [
+  suitability
+  resources
+  land
+
+]
+
+turtles-own [
+  population
+  age
+  production
+]
+
+to setup
+  clear-all
+  if new-seed? [set current-seed new-seed]
+  random-seed current-seed
+  setup-landscape
+  setup-shellmounds
+  setup-resources
+  reset-ticks
+end
+
+to go
+ tick
+  if ticks = 2500 [stop]
+  if not any? turtles [stop]
+
+ ask turtles [
+    calculate-production ;; Calculating production
+    let consumption population * consumption-rate ;; Calculating resource consumption
+    ifelse (production / consumption) &gt; 1 ;; The choice path starts here. If there is a surplus in production,
+                                           ; the site will grow and maybe split into a new one
+    [pop-growth split]
+    [cooperate]
+    death
+    set age age + 1
+    if population &lt;= min-population [die]
+    ]
+
+  output
+
+end
+
+to split ;; Procedure to create a new shellmound
+  let open-patches patches in-radius occupation-radius with [not any? turtles-here and suitability &gt; 0]
+  if random-float 1 &lt; split-rate and any? open-patches [
+    hatch 1
+    [
+      set color pink
+      set population (population / 3)
+      create-link-from myself
+      move-to max-one-of open-patches [suitability]
+    ]
+  ]
+  ask out-link-neighbors [
+    set population population - (population / 3)
+  ]
+end
+
+to cooperate ;;Procedure to make satellite sites help their parent site with surplus resources
+  let consumption population * consumption-rate
+  let surplus production - consumption
+  if any? my-out-links [
+    ifelse random-float 1 &lt; cooperation-rate [
+      ask out-link-neighbors
+      [set production production + (0.5 * surplus)]
+    ]
+    [set population population - (surplus * -1)]
+  ]
+end
+
+to death ;; Pretty obvious
+  set population population - (population * death-rate)
+end
+
+to calculate-production ;; Production is dependent on the size of occupation radius. Needs improvements.
+  let available-patches patches in-radius occupation-radius with [not any? turtles-here]
+  set production (sum [resources] of available-patches + [resources] of patch-here)
+end
+
+to pop-growth ;; Self explanatory
+  set population population + (population * pop-growth-rate)
+end
+
+
+to setup-shellmounds ;; This code was largely taken from the Gregarious Model (Fajardo et al. 2020)
+  set-default-shape turtles &quot;triangle&quot;
+  let i 0
+  while [i  &lt; initial-sites][
+    crt 1
+    [
+      set color blue
+      set size 2
+      move-to max-one-of land-patches with [not any? turtles-here] [suitability]
+      let number one-of (range 25 51)
+      set population number
+    ]
+    set i i + 1
+  ]
+  reset-ticks
+end
+
+to setup-landscape ;; This code was produced by the Gregarious Model (Fajardo et al. 2020)
+  import-pcolors world
+  ask patches [
+    if is-red-patch? [set suitability 1] ; hardly suitable
+    if is-orange-patch? [set suitability 2] ; somewhat suitable
+    if is-yellow-patch? [set suitability 3] ; suitable
+    if is-green-patch? [set suitability 4] ; very suitable
+    if is-black-patch? [set suitability 0] ; not a land patch
+  ]
+  set land-patches patches with [suitability &gt; 0]
+end
+
+to setup-resources ;;Setup a random resource value according to the environmental suitability. Needs improvements
+  ask patches [
+    set resources suitability * random 25
+  ]
+end
+
+to-report is-black-patch? ;; Patch reporter
+  if pcolor &gt; 1 [report false]
+  report true
+end
+
+to-report is-red-patch? ;; Patch reporter
+  if pcolor &lt; 1 [report false]
+  if pcolor &gt;= 20 [report false]
+  report true
+end
+
+to-report is-orange-patch? ;; Patch reporter
+  if pcolor &lt; 20 [report false]
+  if pcolor &gt;= 40 [report false]
+  report true
+end
+
+to-report is-yellow-patch? ;; Patch reporter
+  if pcolor &lt; 40 [report false]
+  if pcolor &gt;= 50 [report false]
+  report true
+end
+
+to-report is-green-patch? ;; Patch reporter
+  if pcolor &lt; 50 [report false]
+  if pcolor &gt;= 70 [report false]
+  report true
+end
+
+to output
+  set-current-plot &quot;Population Distribution&quot;
+  histogram [population] of turtles
+
+  set-current-plot &quot;Total Sites&quot;
+  plot count turtles
+end</code></pre>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
