@@ -8,6 +8,8 @@ navbar:
       menu:
         - text: "Área de Pesquisa"
           href: localizacao.html
+        - text: "Datações"
+          href: datacao.html
     - text: "Sobre"
       href: about.html
     - icon: fab fa-twitter fa-lg
