@@ -11,230 +11,33 @@ output:
 
 # **Agent-Based Model**
 
-Nesta seção estão disponibilizadas as informações relativas ao modelo baseado em agentes (ABM) produzido na tese, como o código-fonte e o relatório ODD para reprodução do modelo. O modelo foi construído no software NetLogo 6.2, que pode ser obtido de forma gratuita [aqui](https://ccl.northwestern.edu/netlogo/).
+Nesta seção estão disponibilizadas as informações relativas aos modelos baseado em agentes (ABM) produzido na tese. O modelo foi construído no software NetLogo 6.2, que pode ser obtido de forma gratuita [aqui](https://ccl.northwestern.edu/netlogo/).
 
-Os arquivos para execução do modelo também estão disponíveis para download neste [link](https://github.com/henrique-kozlowski/arqueologia), na pasta "modelo".
-
-------------------------------------------------------------------------
-
-## Relatório ODD
-
-**1.      Visão Geral**
-
-**1.1.   Propósito e padrões**
-
-O propósito deste modelo é simular a ocupação do complexo lagunar do litoral sul catarinense por comunidades sambaquieiras com o objetivo de replicar o padrão de ocupação destas comunidades em grupos aglomerados de maneira circum-lagunar. Este modelo utiliza simplificações para simular os processos de criação de novas áreas de ocupação e também para simular áreas favoráveis para a ocupação humana. Não é um objetivo definir áreas de maior probabilidade de ocorrência de sítios arqueológicos.
-
-**1.2.   Elementos, variáveis e escalas**
-
-[*Agentes*/*Indivíduos*]{.underline} Os agentes utilizados no modelo correspondem à diferentes comunidades sambaquieiras. Os agentes são representados por um triângulo colorido e são chamados pelo programa de *shellmounds*. Não propomos que as populações sambaquieiras estejam morando sobre os sambaquis, mas devido à nossa escala espacial de análise, a comunidade inteira é representada por um sambaqui. Os sambaquis possuem três variáveis próprias: população (*population)*, produção (*production*) e idade (*age*). A população é inicializada com um valor aleatório entre 25 a 50 indivíduos e varia de acordo com a ação de outros procedimentos ao longo da simulação. A produção é baseada nas variáveis de população e na interação com o ambiente. A idade é auto-explicativa e aumenta conforme se passam os ciclos da simulação.
-
-[*Ambiente*]{.underline} O ambiente simulado é a região norte do complexo lagunar de Santa Catarina e engloba as lagoas de Imaruí, Mirim, Ibiraquera e Garopaba. Cada célula mapeada possui duas variáveis: aptidão (*suitability*) e recursos (*resources*). A aptidão é inicializada a partir das cores dos pixels de um arquivo matricial em formato de imagem PNG produzido previamente em ambiente SIG. Os recursos são inicializados com um valor aleatório de 0 a 25, multiplicado pela aptidão da célula.
-
-[*Escalas*]{.underline} A simulação roda em uma escala temporal em que um ciclo (*tick*) equivale a ações que se desenvolvem ao longo de um ano. A escala espacial é um mundo de 246 x 331 células (*patches*), onde cada célula equivale à uma área de 0,0225 km². A duração da simulação é de 2500 ciclos (*ticks*).
-
-**1.3.   Visão geral do processo e itinerário da simulação**
-
-Ao início de um ciclo os agentes calculam a sua produção (*CALCULATE-PRODUCTION*), o cálculo de produção é baseado na produção dos *patches* sem nenhum outro agente dentro de sua área de ocupação (*OCCUPATION-RADIUS*) somada à produção da célula em que o agente se encontra. Em seguida, o agente calcula seu consumo (*CONSUMPTION*) multiplicando a sua variável população (*POPULATION*) com a variável global da taxa de consumo (*CONSUMPTION-RATE*). Se a relação entre produção e consumo for maior que 1 os agentes executam o procedimento de crescimento populacional (*POP-GROWTH*), definido como a multiplicação da taxa de crescimento com a variável de população, somada à população atual. Os agentes que tiveram uma relação positiva (maior que 1) na produção e consumo executam um novo procedimento: divisão (*SPLIT*). Essa divisão possui uma chance aleatória de acontecer baseada na variável global de taxa de divisão (*SPLIT-RATE*) e na disponibilidade de células ainda não ocupadas dentro do raio de ocupação. Caso ocorra a divisão da comunidade, há a criação de um novo agente linkado ao agente "pai" em uma célula com a maior aptidão (*SUITABILITY*) disponível. A população deste novo agente é equivalente a 1/3 da população do agente pai, o agente pai recalcula sua população para o novo valor. Os agentes que não tiveram um saldo positivo (menor que 1) na relação entre consumo e produção possuem a opção de cooperar (*COOPERATE*) com agentes conectados em sua vizinhança. A chance de cooperação é calculada aleatoriamente a partir da variável global da taxa de cooperação (*COOPERATION-RATE*). Caso os agentes resolvam cooperar a produção do agente equivale a sua produção atual deficitária somada a metade do excedente de produção (produção -- consumo) do agente a qual está conectado. Caso os agentes não cooperam, há uma perda de população equivalente ao quanto faltou de recursos para aquele agente. Após esses procedimentos todos os agentes executam o procedimento de morte (*DEATH*) onde multiplica-se a população atual pela taxa de mortalidade (*DEATH-RATE*) e o valor resultante é subtraído da população atual. Por fim, os agentes calculam a sua idade somando 1 a cada ciclo. Os agentes que tiverem a população igual ou menor ao valor mínimo estipulado (*MIN-POPULATION*) são removidos da simulação.
-
-**2.      Conceitos de design**
-
-[*Princípios Gerais*]{.underline} Neste modelo os agentes estabelecem relações de cooperação entre si baseado na proposta de uma sociedade sambaquieira heterárquica integrada e interconectada (DeBlasis *et al.* 2021), baseada na gestão compartilhada de recursos de subsistência (Toso *et al.* 2021). O ambiente de modelagem e a aptidão das áreas é gerado a partir de um modelo preditivo indutivo dos sambaquis da região, as áreas de maior aptidão são aquelas em que há maior probabilidade de ocorrência de sambaquis. Essa é uma solução para lidar com a ausência de dados paleoambientais detalhados para recriar uma paisagem pretérita. Os recursos também não se referem a nenhum objeto específico, são apenas uma forma de se criar uma paisagem variada. O objetivo da simulação é observar o padrão emergente de ocupação circum-lagunar observado empiricamente para os sambaquis do litoral sul catarinense.
-
-[*Adaptação*]{.underline} A simulação mostra uma concentração de sítios com população pequena, que acabam sendo mais bem sucedidos do que sítios grandes. Os sítios novos ocupam áreas ao redor das lagoas e com o crescimento populacional ocupam áreas de menor aptidão.
-
-[*Sensoriamento*]{.underline} Os agentes ao início da simulação têm conhecimento apenas das áreas em seu entorno de ocupação. No entanto, com o aumento das comunidades, isto é, através da criação de novos agentes na simulação novas áreas são exploradas e a quantidade de recursos captados aumenta. Em algumas áreas do mundo ocorrem explosões populacionais devido à uma maior disponibilidade de recursos.
-
-[*Interação*]{.underline} Os agentes interagem apenas com os seus agentes "filhos" criados a partir dos procedimentos de divisão. É interessante expandir o modelo para criar uma rede de interação com outros sítios em diferentes porções do mundo simulado.
-
-[*Estocasticidade*]{.underline} Alguns elementos estocásticos estão presentes no modelo para garantir diversidade nas simulações. Os exemplos de estocasticidade ocorrem com as decisões de divisão e cooperação, que podem ser alterados no painel inicial da simulação.
-
-[*Observação*]{.underline} São coletadas três informações, em gráfico, neste modelo. Essas observações são um histograma da distribuição da população por sítio, um gráfico do total de sítios presentes na simulação e um gráfico quantificando as áreas de ocupação dos sítios.
-
-**3.      Detalhes**
-
-**3.1.   Inicialização**
-
-O modelo inicializa com a importação dos dados do arquivo de imagem do mundo simulado. Essa inicialização utiliza as cores da imagem para também definir a aptidão de cada célula. Esse método de importação de imagem é baseado no modelo produzido por Fajardo *et al.* (2020), onde definimos cinco categorias distintas de aptidão baseadas na imagem. Os valores presentes na tela de início para a população inicial (*initial-population*), taxa de consumo (*consumption-rate*), taxa de crescimento populacional (*pop-growth-rate*), taxa de cooperação (*cooperation-rate*), taxa de divisão (*split-rate*), taxa de mortalidade (*death-rate*) e raio de ocupação (*occupation-radius*) podem ser alterados conforme desejado para criar diferentes cenários. Os valores pré-determinados são resultantes de testes onde foi possível atingir um cenário de ocupação mais próximo ao padrão empírico dos sítios arqueológicos da região. A simulação também possibilita a criação de uma nova *seed* para cada simulação ou a manutenção desta *seed* para testar diferentes parâmetros com uma certa regularidade. Esta *seed* está relacionada aos valores utilizados pelo computador para gerar aleatoriedade.
-
-**3.2.   Inputs**
-
-O modelo necessita de apenas um *input* externo: o arquivo de imagem com o mapa da área. Esse mapa foi criado através da exportação de um arquivo matricial produzido em ambiente SIG. O arquivo imagem deve estar na mesma pasta do arquivo do modelo, com o nome e formato do arquivo identificado na caixa de texto "world".
-
-**3.3.   Observações e referências**
-
-Este modelo se propõe a replicar o padrão de distribuição dos sambaquis do litoral sul catarinense. Os valores utilizados para as diferentes taxas e probabilidades são genéricos e obtidos através da testagem para replicar o cenário mais parecido com o real. Há diversas possibilidades de expansão do modelo, principalmente com um refinamento dos procedimentos das estratégias de cooperação entre agentes e também do mundo simulado. É interessante testar variações nas taxas de cooperação, raio de ocupação e taxas de divisão para observar diferenças nos padrões de ocupação e duração da simulação. Esse modelo baseia seus procedimentos de inicialização do mundo, criação de agentes e cooperação com base no "Gregarious Behaviour Model" (Fajardo *et al.* 2020).
+Os arquivos para execução do modelo, código-fonte e relatório ODD também estão disponíveis para download neste [link](https://github.com/henrique-kozlowski/arqueologia), na pasta "modelos", ou então clicando nos títulos abaixo.
 
 ------------------------------------------------------------------------
 
-## Código Fonte
+## [Mobilidade](https://github.com/henrique-kozlowski/arqueologia/blob/main/modelo/Mobilidade.rar)
 
-Abaixo está disponibilizado o código completo do modelo:
+::: col-sm-6
+![](images/mobility.png){width="340"}
+:::
 
-``` NetLogo
-globals [
-  land-patches
-  red-patch?
-  green-patch?
-  yellow-patch?
-  orange-patch?
-]
+::: col-sm-6
+Este modelo tem como propósito simular a movimentação de populações sambaquieiras ao longo da região do complexo lagunar do litoral sul-catarinense. Neste modelo adaptamos técnicas de análise de caminhos de menor custo (*Least Cost Path*), comumente utilizadas em ambiente SIG, para um modelo baseado em agentes. A base para esta circulação é feita através de um mapa de custo de deslocamento, produzido no SIG. Os custos de deslocamento foram pensados de acordo com as particularidades do modo de vida das populações sambaquieiras, que era intensamente conectado e integrado aos corpos d'água da região. Portanto, muitas vezes os agentes optam pelo trânsito com canoas ao longo das lagoas. Os pontos de partida e destino são aleatórios, o objetivo do modelo não é definir uma rota real de deslocamento entre sítios, mas sim observar as formas de deslocamento na paisagem e as variações conforme diferentes valores de variáveis são experimentados.
+:::
 
-patches-own [
-  suitability
-  resources
-  land
+::: w-200
+:::
 
-]
+------------------------------------------------------------------------
 
-turtles-own [
-  population
-  age
-  production
-]
+## [Redes e Dinâmicas](https://github.com/henrique-kozlowski/arqueologia/blob/main/modelo/Redes.rar)
 
-to setup
-  clear-all
-  if new-seed? [set current-seed new-seed]
-  random-seed current-seed
-  setup-landscape
-  setup-shellmounds
-  setup-resources
-  reset-ticks
-end
+::: col-sm-6
+![](images/trade.png)
+:::
 
-to go
- tick
-  if ticks = 2500 [stop]
-  if not any? turtles [stop]
-
- ask turtles [
-    calculate-production ;; Calculating production
-    let consumption population * consumption-rate ;; Calculating resource consumption
-    ifelse (production / consumption) > 1 ;; The choice path starts here. If there is a surplus in production,
-                                           ; the site will grow and maybe split into a new one
-    [pop-growth split]
-    [cooperate]
-    death
-    set age age + 1
-    if population <= min-population [die]
-    ]
-
-  output
-
-end
-
-to split ;; Procedure to create a new shellmound
-  let open-patches patches in-radius occupation-radius with [not any? turtles-here and suitability > 0]
-  if random-float 1 < split-rate and any? open-patches [
-    hatch 1
-    [
-      set color pink
-      set population (population / 3)
-      create-link-from myself
-      move-to max-one-of open-patches [suitability]
-    ]
-  ]
-  ask out-link-neighbors [
-    set population population - (population / 3)
-  ]
-end
-
-to cooperate ;;Procedure to make satellite sites help their parent site with surplus resources
-  let consumption population * consumption-rate
-  let surplus production - consumption
-  if any? my-out-links [
-    ifelse random-float 1 < cooperation-rate [
-      ask out-link-neighbors
-      [set production production + (0.5 * surplus)]
-    ]
-    [set population population - (surplus * -1)]
-  ]
-end
-
-to death ;; Pretty obvious
-  set population population - (population * death-rate)
-end
-
-to calculate-production ;; Production is dependent on the size of occupation radius. Needs improvements.
-  let available-patches patches in-radius occupation-radius with [not any? turtles-here]
-  set production (sum [resources] of available-patches + [resources] of patch-here)
-end
-
-to pop-growth ;; Self explanatory
-  set population population + (population * pop-growth-rate)
-end
-
-
-to setup-shellmounds ;; This code was largely taken from the Gregarious Model (Fajardo et al. 2020)
-  set-default-shape turtles "triangle"
-  let i 0
-  while [i  < initial-sites][
-    crt 1
-    [
-      set color blue
-      set size 2
-      move-to max-one-of land-patches with [not any? turtles-here] [suitability]
-      let number one-of (range 25 51)
-      set population number
-    ]
-    set i i + 1
-  ]
-  reset-ticks
-end
-
-to setup-landscape ;; This code was produced by the Gregarious Model (Fajardo et al. 2020)
-  import-pcolors world
-  ask patches [
-    if is-red-patch? [set suitability 1] ; hardly suitable
-    if is-orange-patch? [set suitability 2] ; somewhat suitable
-    if is-yellow-patch? [set suitability 3] ; suitable
-    if is-green-patch? [set suitability 4] ; very suitable
-    if is-black-patch? [set suitability 0] ; not a land patch
-  ]
-  set land-patches patches with [suitability > 0]
-end
-
-to setup-resources ;;Setup a random resource value according to the environmental suitability. Needs improvements
-  ask patches [
-    set resources suitability * random 25
-  ]
-end
-
-to-report is-black-patch? ;; Patch reporter
-  if pcolor > 1 [report false]
-  report true
-end
-
-to-report is-red-patch? ;; Patch reporter
-  if pcolor < 1 [report false]
-  if pcolor >= 20 [report false]
-  report true
-end
-
-to-report is-orange-patch? ;; Patch reporter
-  if pcolor < 20 [report false]
-  if pcolor >= 40 [report false]
-  report true
-end
-
-to-report is-yellow-patch? ;; Patch reporter
-  if pcolor < 40 [report false]
-  if pcolor >= 50 [report false]
-  report true
-end
-
-to-report is-green-patch? ;; Patch reporter
-  if pcolor < 50 [report false]
-  if pcolor >= 70 [report false]
-  report true
-end
-
-to output
-  set-current-plot "Population Distribution"
-  histogram [population] of turtles
-
-  set-current-plot "Total Sites"
-  plot count turtles
-end
-```
+::: col-sm-6
+Este modelo simula dois aspectos da população sambaquieira no complexo lagunar do litoral sul catarinense: a ocupação do território e as possíveis redes de trocas entre as diferentes comunidades. O propósito desta simulação é compreender e explorar as diferentes formas de articulação das omunidades sambaquieiras no passado. Este modelo utiliza simplificações para simular os processos de criação de novas áreas de ocupação e também para simular áreas favoráveis para a ocupação humana. Não é um objetivo da simulação predizer áreas de maior probabilidade de ocorrência de sítios arqueológicos. Os padrões utilizados para explorar a articulação das comunidades são decorrentes das diferentes estratégias de troca utilizadas pelos agentes. O modelo simula duas formas de trocas, baseadas no trabalho de Sahlins e Graeber (2017): reciprocidade generalizada (*grn?* no modelo) e reciprocidade balanceada (*brn?* no modelo).
+:::
