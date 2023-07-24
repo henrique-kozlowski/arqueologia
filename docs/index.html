@@ -13,7 +13,7 @@
 
 <title>Início</title>
 
-<script src="site_libs/header-attrs-2.15/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -180,8 +180,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -189,16 +189,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -322,9 +315,10 @@ $(document).ready(function () {
 <div id="olá" class="section level1 col-sm-6">
 <h1><strong>Olá!</strong></h1>
 <p>Este site é um repositório digital dos resultados minha tese de
-doutorado “XXXXXXX”, produzida no Museu de Arqueologia e Etnologia da
-Universidade de São Paulo e financiada pelo CNPq. O texto completo está
-disponível <a
+doutorado “Modelagens Arqueológicas no Litoral Sul Catarinense:
+Sambaquianos na Região da Lagoa de Imaruí”, produzida no Museu de
+Arqueologia e Etnologia da Universidade de São Paulo e financiada pelo
+CNPq. O texto completo está disponível <a
 href="https://teses.usp.br/teses/disponiveis/71/71131/tde-23102018-175041/pt-br.php">aqui</a>.
 Na seção “Dados” deste site é possível visualizar versões interativas
 dos bancos de dados utilizados na pesquisa. Estou disponível para
