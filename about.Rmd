@@ -8,7 +8,7 @@ output: html_document
 </center>
 
 # **Henrique de Sena Kozlowski**
-Arqueólogo, doutorando pelo Museu de Arqueologia e Etnologia da Universidade de São Paulo e bolsista CNPq. Pesquiso sambaquis do litoral sul catarinense através da aplicação de técnicas de modelagem espacial em GIS e Agent-Based Models (ABM). Este site serve como apoio digital para a minha tese de doutorado "xxxxx". Se você tiver qualquer dúvida, entre em contato comigo através de uma das minhas redes.
+Arqueólogo, doutorando pelo Museu de Arqueologia e Etnologia da Universidade de São Paulo e bolsista CNPq. Pesquiso sambaquis do litoral sul catarinense através da aplicação de técnicas de modelagem espacial em GIS e Agent-Based Models (ABM). Este site serve como apoio digital para a minha tese de doutorado "Modelagens Arqueológicas no Litoral Sul Catarinense: Sambaquianos na Região da Lagoa de Imaruí". Se você tiver qualquer dúvida, entre em contato comigo através de uma das minhas redes.
 
 ***
 
