@@ -7,7 +7,7 @@ output:
     toc_depth: 3
 ---
 
-```{r include=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 library(mapview)
 library(tidyverse)
 library(tidylog)
@@ -18,16 +18,17 @@ sitios_shape <- st_read("shapefiles/sitiosv5.shp")
 sitios_tabela <- read.csv2("tabelas/sitios_total.csv", encoding = "UTF-8")
 ```
 
-
 # **Mapas e Tabelas**
+
 Nesta seção apresentamos os mapas e tabelas da área de pesquisa de maneira interativa. O download dos arquivos espaciais e das tabelas em formato .csv pode ser feito [aqui](https://github.com/henrique-kozlowski/arqueologia)
 
-***
+------------------------------------------------------------------------
 
 ## Sítios Arqueológicos
 
 O mapa abaixo apresenta os diferentes sítios arqueológicos mapeados na área de pesquisa. É só clicar em um ponto para se ter mais informações sobre o sítio.
 
+<<<<<<< Updated upstream
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 sitios_shape %>% mapview(zcol = "Tipo_2",
                    label = "Sítio",
@@ -36,7 +37,7 @@ sitios_shape %>% mapview(zcol = "Tipo_2",
                    layer.name = "Categoria")
 ```
 
-***
+------------------------------------------------------------------------
 
 ## Tabela de Sítios
 
@@ -49,5 +50,4 @@ sitios_tabela %>%
             style = "bootstrap")
 ```
 
-
-***
+------------------------------------------------------------------------

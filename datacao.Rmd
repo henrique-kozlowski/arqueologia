@@ -20,7 +20,7 @@ datas <- read.csv2("tabelas/datas.csv", encoding = "UTF-8")
 data_tabela <- read.csv2("tabelas/datas_grafico.csv", encoding = "UTF-8")
 #data_tabela <- data_tabela %>% rename(nome = X.U.FEFF.sitio)
 
-data_tabela <- data_tabela %>% mutate(sitio = factor(sitio, levels = c("Cabeçuda I","SC-NB-04","Roça Grande II","Ponta das Laranjeiras II", "Pedra Chata (Bananal)","Aldeia da ZPE", "Baixo Rio D' Una I", "Awyra", "SC-LGN-050","Cabeçuda II", "SC-NB-01"), ordered = T))
+data_tabela <- data_tabela %>% mutate(sitio = factor(sitio, levels = c("Cabeçuda I", "SC-NB-04","Pedra Chata (Bananal)", "Baixo Rio D'Una I",  "SC-LGN-50", "SC-NB-01"), ordered = T))
 ```
 
 ------------------------------------------------------------------------

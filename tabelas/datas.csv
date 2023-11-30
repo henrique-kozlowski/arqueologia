@@ -1,33 +1,34 @@
 ﻿Sítio;Tipo;C14;cal AP max;cal AP min;Amostra;Laboratório;Referência
-Aldeia da ZPE;Guarani;715 ± 75;816;516;sedimento (TL);-;"Lavina 1999; Santos et al. 2017"
-Aldeia da ZPE;Guarani;810 ± 85;931;541;sedimento (TL);-;"Lavina 1999; Santos et al. 2017"
-Aldeia da ZPE;Guarani;1050 ± 150;1301;701;sedimento (TL);-;"Lavina 1999; Santos et al. 2017"
-Aldeia da ZPE;Guarani;1000 ± 110;1171;731;cerâmica (TL);-;"Lavina 1999; Santos et al. 2017"
-Aldeia da ZPE;Guarani;1040 ± 110;1211;771;cerâmica (TL);-;"Lavina 1999; Santos et al. 2017"
+Aldeia da ZPE;Guarani;715 ± 75;-;-;sedimento (TL);-;"Lavina 1999; Santos et al. 2017"
+Aldeia da ZPE;Guarani;810 ± 85;-;-;sedimento (TL);-;"Lavina 1999; Santos et al. 2017"
+Aldeia da ZPE;Guarani;1050 ± 150;-;-;sedimento (TL);-;"Lavina 1999; Santos et al. 2017"
+Aldeia da ZPE;Guarani;1000 ± 110;-;-;cerâmica (TL);-;"Lavina 1999; Santos et al. 2017"
+Aldeia da ZPE;Guarani;1040 ± 110;-;-;cerâmica (TL);-;"Lavina 1999; Santos et al. 2017"
 Awyra;Guarani;-;550;490;-;Beta 217834;Farias & Kneip 2010
 Awyra;Guarani;-;650;530;-;Beta 217835;Farias & Kneip 2010
-Baixo Rio d' Una I;Guarani;910 ± 30;903;689;carvão;Beta 396226;"Schwengber 2015; Novasco et al. 2021"
-Cabeçuda I;Sambaqui;1800 ± 40;1721;1536;osso humano;Beta 297833;Saladino 2016
-Cabeçuda I;Sambaqui;1990 ± 30;1930;1751;osso humano;Beta 297832;Saladino 2016
-Cabeçuda I;Sambaqui;2030 ± 30;1988;1830;osso humano;Beta 297831;Saladino 2016
-Cabeçuda I;Sambaqui;2290 ± 30;2318;2145;osso humano;Beta 297834;Saladino 2016
-Cabeçuda I;Sambaqui;2290 ± 30;2318;2145;osso humano;Beta 383565;Farias & DeBlasis 2014
-Cabeçuda I;Sambaqui;2920 ± 30;3060;2865;osso humano;Beta 383567;Farias & DeBlasis 2014
-Cabeçuda I;Sambaqui;3030 ± 30;3210;3005;osso humano;Beta 383566;Farias & DeBlasis 2014
-Cabeçuda I;Sambaqui;3640 ± 50;3976;3662;concha;Beta 280005;Saladino 2016
-Cabeçuda I;Sambaqui;4120 ± 351;5579;3695;carvão;Hannover 167;Geyh & Schneekloth 1964
-Cabeçuda I;Sambaqui;3870 ± 40;4351;4013;osso humano;Beta 280009;Saladino 2016
-Cabeçuda I;Sambaqui;4020 ± 50;4499;4175;concha;Beta 280007;Saladino 2016
-Cabeçuda I;Sambaqui;4180 ± 60;4776;4405;concha;Beta 280006;Saladino 2016
-Cabeçuda I;Sambaqui;4180 ± 60;4776;4405;concha;Beta 280008;Saladino 2016
+Baixo Rio d' Una I;Guarani;910 ± 30;807;721;carvão;Beta 396226;"Schwengber 2015; Novasco et al. 2021"
+Cabeçuda I;Sambaqui;1800 ± 40;1589;1342;osso humano;Beta 297833;Saladino 2016
+Cabeçuda I;Sambaqui;1990 ± 30;1820;1561;osso humano;Beta 297832;Saladino 2016
+Cabeçuda I;Sambaqui;2030 ± 30;1841;1605;osso humano;Beta 297831;Saladino 2016
+Cabeçuda I;Sambaqui;2290 ± 30;2151;1892;osso humano;Beta 297834;Saladino 2016
+Cabeçuda I;Sambaqui;2290 ± 30;1892;2151;osso humano;Beta 383565;Farias & DeBlasis 2014
+Cabeçuda I;Sambaqui;2920 ± 30;2937;2729;osso humano;Beta 383567;Farias & DeBlasis 2014
+Cabeçuda I;Sambaqui;3030 ± 30;3078;2781;osso humano;Beta 383566;Farias & DeBlasis 2014
+Cabeçuda I;Sambaqui;3640 ± 50;3696;3285;concha;Beta 280005;Saladino 2016
+Cabeçuda I;Sambaqui;4120 ± 351;5084;3979;carvão;Hannover 167;Geyh & Schneekloth 1964
+Cabeçuda I;Sambaqui;3870 ± 40;4155;3831;osso humano;Beta 280009;Saladino 2016
+Cabeçuda I;Sambaqui;4020 ± 50;4211;3748;concha;Beta 280007;Saladino 2016
+Cabeçuda I;Sambaqui;4180 ± 60;4418;3938;concha;Beta 280006;Saladino 2016
+Cabeçuda I;Sambaqui;4180 ± 60;4418;3938;concha;Beta 280008;Saladino 2016
 Cabeçuda II;Sambaqui/Guarani;-;630;500;-;Beta 242800;Assunção 2010
-Pedra Chata (Bananal);Sambaqui;2040 ± 30;1975;1765;concha;Beta 383570;Farias & DeBlasis 2014
-Ponta das Laranjeiras II;Sambaqui;2010 ± 50;2045;1752;-;Beta 270328;Kneip et al. 2018
-Roça Grande II;Sambaqui;-;3970;3810;osso humano;Beta 258226;De Masi, 2017
-Roça Grande II;Sambaqui;-;4290;4080;osso humano;Beta 258227;De Masi, 2017
-Roça Grande II;Sambaqui;-;3960;3950;-;Beta 258227;De Masi, 2017
-SC-LGN-050;Guarani;470 ± 30;527;340;carvão;Beta 383568;Farias 2012
-SC-LGN-050;Guarani;570 ± 30;524;505;carvão;Beta 383571;Farias 2012
-SC-LGN-050;Guarani;600 ± 30;631;519;carvão;Beta 383569;"Lavina 1999; Santos et al. 2017"
-SC-NB-01;Guarani;370 ± 30;486;315;carvão;Beta 322235;"Lavina 1999; Santos et al. 2017"
-SC-NB-04;Sambaqui/Guarani;3920 ± 30;4418;4159;carvão;Beta 322236;"Lavina 1999; Santos et al. 2017"
+Pedra Chata (Bananal);Sambaqui;2040 ± 30;1701;1365;concha;Beta 383570;Farias & DeBlasis 2014
+Ponta das Laranjeiras II;Sambaqui;2010 ± 50;;;-;Beta 270328;Kneip et al. 2018
+Roça Grande II;Sambaqui;-;3970;3810;osso humano;Beta 233159;De Masi 2017
+Roça Grande II;Sambaqui;-;4290;4080;osso humano;Beta 258226;De Masi 2017
+Roça Grande II;Sambaqui;-;3960;3950;osso humano;Beta 258227;De Masi 2017
+Praia do Rosa I;Guarani;-;640;490;-;Beta 217837;Farias & Kneip 2010
+SC-LGN-050;Guarani;470 ± 30;524;448;carvão;Beta 383568;Farias & DeBlasis 2014
+SC-LGN-050;Guarani;570 ± 30;558;505;carvão;Beta 383571;Farias & DeBlasis 2014
+SC-LGN-050;Guarani;600 ± 30;564;517;carvão;Beta 383569;Farias & DeBlasis 2014
+SC-NB-01;Guarani;370 ± 30;470;314;carvão;Beta 322235;Farias 2012
+SC-NB-04;Sambaqui/Guarani;3920 ± 30;4417;4229;carvão;Beta 322236;Farias 2012

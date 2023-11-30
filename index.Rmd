@@ -2,6 +2,7 @@
 title: "Início"
 output: html_document
 ---
+<<<<<<< Updated upstream
 
 ------------------------------------------------------------------------
 
@@ -13,6 +14,19 @@ output: html_document
 Este site é um repositório digital dos resultados minha tese de doutorado "Modelagens Arqueológicas no Litoral Sul Catarinense: Sambaquianos na Região da Lagoa de Imaruí", produzida no Museu de Arqueologia e Etnologia da Universidade de São Paulo e financiada pelo CNPq. O texto completo está disponível [aqui](https://teses.usp.br/teses/disponiveis/71/71131/tde-23102018-175041/pt-br.php). Na seção "Dados" deste site é possível visualizar versões interativas dos bancos de dados utilizados na pesquisa. Estou disponível para contato sobre qualquer dúvida.
 :::
 
+=======
+
+------------------------------------------------------------------------
+
+<div class="row" style="padding-top: 30px;">
+
+::: col-sm-6
+# **Olá!**
+
+Este site é um repositório digital dos resultados minha tese de doutorado "XXXXXXX", produzida no Museu de Arqueologia e Etnologia da Universidade de São Paulo e financiada pelo CNPq. O texto completo está disponível [aqui](https://teses.usp.br/teses/disponiveis/71/71131/tde-23102018-175041/pt-br.php). Na seção "Dados" deste site é possível visualizar versões interativas dos bancos de dados utilizados na pesquisa. Estou disponível para contato sobre qualquer dúvida.
+:::
+
+>>>>>>> Stashed changes
 ::: col-sm-6
 ![](images/logo.png)
 :::
